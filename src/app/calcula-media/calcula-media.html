@@ -17,14 +17,25 @@
         <input id="b4" type="number" #b4>
     </div>
     <div>
+        <label for="nf">Nota Final</label>
+        <input id="nf" type="number" #nf>
+    </div>
+    <div>
         <input type="button" value="Calcular"
                (click)="calcularMediaParcial(+b1.value,
-                +b2.value, +b3.value, +b4.value)">
+                +b2.value, +b3.value, +b4.value, +nf.value)">
     </div>
 </form>
 <!-- Exibe se tiver média parcial (não for undefined)-->
-@if (mediaParcial) {
-    <div>
-        <p>Média parcial = {{mediaParcial}}</p>
+@if (mediaParcial !== undefined) {
+    <div class="resultado">
+        <p><strong>Média Parcial:</strong> {{ mediaParcial.toFixed(2) }}</p>
+
+        <p><strong>Média Final:</strong> {{ mediaFinal?.toFixed(2) }}</p>
+
+        <p>
+            <strong>Situação:</strong>
+            {{ situacao }}
+        </p>
     </div>
 }
