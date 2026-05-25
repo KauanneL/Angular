@@ -1,41 +1,65 @@
-<h1>Calcula a média de uma disciplina</h1>
-<form>
-    <div>
-        <label for="b1">Bim 1</label>
-        <input id="b1" type="number" #b1>
-    </div>
-    <div>
-        <label for="b2">Bim 2</label>
-        <input id="b2" type="number" #b2>
-    </div>
-    <div>
-        <label for="b3">Bim 3</label>
-        <input id="b3" type="number" #b3>
-    </div>
-    <div>
-        <label for="b4">Bim 4</label>
-        <input id="b4" type="number" #b4>
-    </div>
-    <div>
-        <label for="nf">Nota Final</label>
-        <input id="nf" type="number" #nf>
-    </div>
-    <div>
-        <input type="button" value="Calcular"
-               (click)="calcularMediaParcial(+b1.value,
-                +b2.value, +b3.value, +b4.value, +nf.value)">
-    </div>
-</form>
-<!-- Exibe se tiver média parcial (não for undefined)-->
-@if (mediaParcial !== undefined) {
-    <div class="resultado">
-        <p><strong>Média Parcial:</strong> {{ mediaParcial.toFixed(2) }}</p>
+<div class="container">
 
-        <p><strong>Média Final:</strong> {{ mediaFinal?.toFixed(2) }}</p>
+    <h1>Calcula a média de uma disciplina</h1>
 
-        <p>
-            <strong>Situação:</strong>
-            {{ situacao }}
-        </p>
-    </div>
+    <form>
+        <div class="card">
+            <div>
+                <label>Bim 1</label>
+                <input type="number" #b1>
+            </div>
+            <div>
+                <label>Bim 2</label>
+                <input type="number" #b2>
+            </div>
+            <div>
+                <label>Bim 3</label>
+                <input type="number" #b3>
+            </div>
+            <div>
+                <label>Bim 4</label>
+                <input type="number" #b4>
+            </div>
+
+            <div class="botao">
+                <input
+                    type="button"
+                    value="Calcular"
+                    (click)="calcularMediaParcial(+b1.value, +b2.value, +b3.value, +b4.value)">
+            </div>
+        </div>
+    </form>
+
+    @if (mediaParcial && mediaParcial < 60) {
+
+        <form>
+            <div class="card">
+                <div>
+                    <label>Nota da Avaliação Final</label>
+                    <input type="number" #nf>
+                </div>
+                <div class="botao">
+                    <input
+                        type="button"
+                        value="Calcular"
+                        (click)="calcularMediaFinal(+nf.value)">
+                </div>
+            </div>
+        </form>
+    }
+
+    @if (mediaParcial) {
+<div class="resultado">
+    <p>Média parcial = {{ mediaParcial }}</p>
+    <p>Situação = {{ situacao }}</p>
+</div>
 }
+
+@if (mediaFinal) {
+<div class="resultado">
+    <p>Média final = {{ mediaFinal }}</p>
+    <p>Situação = {{ situacao }}</p>
+</div>
+}
+
+</div>
