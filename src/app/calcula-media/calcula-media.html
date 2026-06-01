@@ -1,65 +1,47 @@
 <div class="container">
+    <h1 class="text-center">Calcula a média de uma disciplina</h1>
+    <div class="row">
+        <div class="col col-lg-6 offset-xl-3">
+            <form [formGroup]="formMedia">
+                <div class="mb-3">
+                    <label for="b1" class="form-label">Bim 1</label>
+                    <input id="b1" class="form-control" 
+                            type="number" formControlName="bim1"> 
+                </div>
 
-    <h1>Calcula a média de uma disciplina</h1>
-
-    <form>
-        <div class="card">
+                <div class="mb-3">
+                    <label for="b2" class="form-label">Bim 2</label>
+                    <input id="b2" class="form-control" 
+                            type="number" formControlName="bim2">
+                </div>
+                <div class="mb-3">
+                    <label for="b3" class="form-label">Bim 3</label>
+                    <input id="b3" class="form-control" 
+                            type="number" formControlName="bim3">
+                </div>
+                <div class="mb-3">
+                    <label for="b4" class="form-label">Bim 4</label>
+                    <input id="b4" class="form-control" 
+                            type="number" formControlName="bim4">
+                </div>
+                <div class="mb-3">
+                    <input type="button" class="btn btn-primary d-block mx-auto"
+                          value="Calcular" (click)="calcularMediaParcial()"
+                [disabled]="formMedia.invalid">
+                </div>
+</form>
+  @if (mediaParcial) {
             <div>
-                <label>Bim 1</label>
-                <input type="number" #b1>
+                @if (mediaParcial >= 60) {
+                <p class="alert alert-success">Média parcial = {{mediaParcial}}</p>
+                } @else if (mediaParcial >= 10) {
+                <p class="alert alert-warning">Média parcial = {{mediaParcial}}</p>
+                } @else {
+                <p class="alert alert-danger">Média parcial = {{mediaParcial}}
+                </p>
+                }
             </div>
-            <div>
-                <label>Bim 2</label>
-                <input type="number" #b2>
-            </div>
-            <div>
-                <label>Bim 3</label>
-                <input type="number" #b3>
-            </div>
-            <div>
-                <label>Bim 4</label>
-                <input type="number" #b4>
-            </div>
-
-            <div class="botao">
-                <input
-                    type="button"
-                    value="Calcular"
-                    (click)="calcularMediaParcial(+b1.value, +b2.value, +b3.value, +b4.value)">
-            </div>
+            }
         </div>
-    </form>
-
-    @if (mediaParcial && mediaParcial < 60) {
-
-        <form>
-            <div class="card">
-                <div>
-                    <label>Nota da Avaliação Final</label>
-                    <input type="number" #nf>
-                </div>
-                <div class="botao">
-                    <input
-                        type="button"
-                        value="Calcular"
-                        (click)="calcularMediaFinal(+nf.value)">
-                </div>
-            </div>
-        </form>
-    }
-
-    @if (mediaParcial) {
-<div class="resultado">
-    <p>Média parcial = {{ mediaParcial }}</p>
-    <p>Situação = {{ situacao }}</p>
-</div>
-}
-
-@if (mediaFinal) {
-<div class="resultado">
-    <p>Média final = {{ mediaFinal }}</p>
-    <p>Situação = {{ situacao }}</p>
-</div>
-}
-
+    </div>
 </div>
